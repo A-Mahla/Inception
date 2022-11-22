@@ -15,4 +15,5 @@ RUN		mkdir	/etc/nginx/ssl \
 
 EXPOSE	443
 
-CMD ["nginx","-t"]
+CMD ["nginx","-g","daemon off;"]
+#CMD ["bash"]
