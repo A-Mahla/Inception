@@ -6,7 +6,8 @@ RUN		apt-get update \
 COPY	./conf/my.cnf /etc/mysql/.
 COPY	./tools/entrypoint.sql /tmp/entrypoint.sql
 
-RUN		service mysql start && \
+RUN		chmod 755 /var/lib/mysql && \
+		service mysql start && \
 		mysql < /tmp/entrypoint.sql
 
 EXPOSE	3306
