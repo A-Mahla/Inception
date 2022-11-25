@@ -1,7 +1,27 @@
 version: '3.7'
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx/.
     ports:
       - "443:443"
     restart: always
+    networks:
+      - inception
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/.
+    expose:
+      - "3306"
+    restart: always
+    volumes:
+      - mariadb_data:/home/amahla/data
+    networks:
+      - inception
+
+volumes:
+  mariadb_data:
+
+networks:
+  inception:
+    name: inception
