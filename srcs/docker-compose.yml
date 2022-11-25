@@ -7,8 +7,8 @@ services:
       - "3306"
     restart: always
     volumes:
-#      - mariadb_data:/var/lib/mysql
-      - /home/amahla/data/mariadb:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
+#      - /home/amahla/data/mariadb:/var/lib/mysql
     networks:
       - inception
 #  wordpress:
@@ -30,11 +30,12 @@ services:
     networks:
       - inception
 
-#volumes:
-#  mariadb_data:
-#    driver_opts:
-#      type: volume
-#      source: /home/amahla/data/mariadb
+volumes:
+  mariadb_data:
+    driver_opts:
+      type: volume
+      source: /home/amahla/data/mariadb
+      o: bind
 
 #  /home/amahla/data/mariadb
 #  /home/amahla/data/wordpress:
