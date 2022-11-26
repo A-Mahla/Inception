@@ -1,44 +1,52 @@
 version: '3.7'
 services:
+
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/.
     expose:
       - "3306"
-    restart: always
+    restart: on-failure
     volumes:
       - mariadb_data:/var/lib/mysql
-#      - /home/amahla/data/mariadb:/var/lib/mysql
     networks:
       - inception
-#  wordpress:
-#    depends_on:
-#      - mariadb
-#    container_name: wordpress
-#    build: ./requirements/wordpress/.
-#    expose:
-#      - "9000"
-#    restart: always
-#    volumes:
-#      - wordpress_data:/var/www/worldpress
+
+  wordpress:
+    depends_on:
+      - mariadb
+    container_name: wordpress
+    build: ./requirements/wordpress/.
+    expose:
+      - "9000"
+    restart: on-failure
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - inception
+    environment:
+      - DB_HOST=mariadb
+
   nginx:
     container_name: nginx
     build: ./requirements/nginx/.
     ports:
       - "443:443"
-    restart: always
+    restart: on-failure
     networks:
       - inception
 
 volumes:
   mariadb_data:
     driver_opts:
-      type: volume
-      source: /home/amahla/data/mariadb
+      type: none
+      device: /home/amahla/data/mariadb
       o: bind
-
-#  /home/amahla/data/mariadb
-#  /home/amahla/data/wordpress:
+  wordpress_data:
+    driver_opts:
+      type: none
+      device: /home/amahla/data/wordpress
+      o: bind
 
 networks:
   inception:
