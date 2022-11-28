@@ -2,7 +2,7 @@
 
 if [ -f /var/www/html/wp-config.php ]
 then
-	echo "Wordpress is already downloaded, configured and install"
+	echo "Wordpress is already downloaded, configured and installed"
 else
 	wp core download --allow-root
 	wp config create --allow-root --dbhost=mariadb:3306 --dbname=wordpressdb \

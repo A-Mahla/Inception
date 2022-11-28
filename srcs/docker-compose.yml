@@ -3,7 +3,7 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb/.
+    build: requirements/mariadb/.
     expose:
       - "3306"
     restart: on-failure
@@ -16,7 +16,7 @@ services:
     depends_on:
       - mariadb
     container_name: wordpress
-    build: ./requirements/wordpress/.
+    build: requirements/wordpress/.
     expose:
       - "9000"
     restart: on-failure
@@ -31,7 +31,7 @@ services:
     container_name: nginx
     depends_on:
       - wordpress
-    build: ./requirements/nginx/.
+    build: requirements/nginx/.
     ports:
       - "443:443"
     restart: on-failure
