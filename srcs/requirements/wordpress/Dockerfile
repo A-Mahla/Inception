@@ -23,11 +23,18 @@ WORKDIR	/var/www/worldpress
 EXPOSE	9000
 
 CMD		wp core download --allow-root && \
-		wp config create --allow-root --dbhost=mariadb:3306 --dbname=worldpressdb --dbuser=amahla --dbpass=Secret94 && \
+		wp config create --allow-root \
+		--dbhost=mariadb:3306 \
+		--dbname=wordpressdb \
+		--dbuser=amahla \
+		--dbpass=Secret94 && \
 		wp core install --allow-root \
-		--admin_user=supervisor \
-		--admin_password=strongpassword && \
-		php-fpm7
+		--url="amahla.42.fr" \
+		--title="Inception" \
+		--admin_user="supervisor" \
+		--admin_password="StrongSecret94" \
+		--admin_email="amahla@supervisor.com" && \
+		php-fpm7.3
 
 
 
