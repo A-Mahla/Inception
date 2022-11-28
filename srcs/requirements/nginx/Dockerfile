@@ -15,5 +15,5 @@ RUN		mkdir	/etc/nginx/ssl \
 
 EXPOSE	443
 
-CMD ["nginx","-g","daemon off;"]
+ENTRYPOINT ["nginx","-g","daemon off;"]
 #CMD ["bash"]
