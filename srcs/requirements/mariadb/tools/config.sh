@@ -1,7 +1,11 @@
 #service mysql start
 
 #/etc/init.d/mysql start
+
+if [ ! -d /var/lib/mysql/mysql ]
+then
 mysql_install_db > /dev/null
+
 
 mysqld_safe & sleep 2
 
@@ -49,5 +53,6 @@ EOF
 mysqladmin -uroot -p$DB_ROOT_PWD shutdown
 #systemctl stop mariadb
 #sleep 2
+fi
 
-mysqld -u root
+exec mysqld -u root

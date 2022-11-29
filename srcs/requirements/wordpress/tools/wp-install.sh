@@ -1,10 +1,11 @@
 #!/bin/bash
 
-#sleep 10
+sleep 10
 if [ -f /var/www/html/wp-config.php ]
 then
 	echo "Wordpress is already downloaded, configured and installed"
 else
+	
 	wp core download --allow-root
 	wp config create --allow-root --dbhost=mariadb:3306 --dbname=$DB_NAME \
 	--dbuser=$DB_USER --dbpass=$DB_USER_PWD

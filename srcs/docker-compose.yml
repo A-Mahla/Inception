@@ -19,7 +19,7 @@ services:
     depends_on:
       mariadb:
  #       condition: service_healthy
-        condition: service_completed_successfully
+        condition: service_started
     container_name: wordpress
     env_file:
       - .env
