@@ -19,14 +19,23 @@ services:
       interval: 0.5s
       retries: 100
 
+  redis:
+    container_name: redis
+    build: requirements/bonus/redis/.
+    restart: on-failure
+    networks:
+      - inception
+
+
   wordpress:
     depends_on:
       mariadb:
         condition: service_healthy
+      redis:
+        condition: service_started
     container_name: wordpress
     env_file:
       - .env
-    expose:
     build: requirements/wordpress/.
     expose:
       - "9000"

@@ -12,6 +12,13 @@ else
 	wp core install --allow-root --url="$DOMAIN_NAME" --title="Inception" \
 	--admin_user="$WP_ADMIN" --admin_password="$WP_ADMIN_PWD" --admin_email="$WP_ADMIN_MAIL"
 	wp user create --allow-root $WP_USER $WP_USER_MAIL --user_pass=$WP_USER_PWD
+
+	wp config set --allow-root WP_REDIS_PORT 6379 --add
+	wp config set --allow-root WP_CACHE_KEY_SALT $DOMAIN_NAME --add
+	wp config set --allow-root WP_REDIS_HOST redis --add
+	wp config set --allow-root  WP_DEBUG true --raw
+	wp plugin install --allow-root redis-cache --activate
+
 fi
 echo "Wordpress is running"
 php-fpm7.3 -F

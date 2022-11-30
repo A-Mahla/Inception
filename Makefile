@@ -3,7 +3,7 @@ DB_DIR			:=	/home/amahla/data/mariadb
 WP_DIR			:=	/home/amahla/data/wordpress
 
 all				:	config
-					docker compose -f $(DOCKER_COMPOSE) up -d
+					docker compose -f $(DOCKER_COMPOSE) up
 
 config			:
 					@mkdir -p $(DB_DIR)
