@@ -14,37 +14,39 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
+    stdin_open: true
+    tty: true
 
-  wordpress:
-    depends_on:
-      mariadb:
+#  wordpress:
+#    depends_on:
+#      mariadb:
  #       condition: service_healthy
-        condition: service_started
-    container_name: wordpress
-    env_file:
-      - .env
-    expose:
-    build: requirements/wordpress/.
-    expose:
-      - "9000"
-    restart: on-failure
-    volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - inception
+#        condition: service_started
+#    container_name: wordpress
+#    env_file:
+#      - .env
+#    expose:
+#    build: requirements/wordpress/.
+#    expose:
+#      - "9000"
+#    restart: on-failure
+#    volumes:
+#      - wordpress_data:/var/www/html
+#    networks:
+#      - inception
 
-  nginx:
-    container_name: nginx
-    depends_on:
-      - wordpress
-    build: requirements/nginx/.
-    ports:
-      - "443:443"
-    restart: on-failure
-    volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - inception
+#  nginx:
+#    container_name: nginx
+#    depends_on:
+#      - wordpress
+#    build: requirements/nginx/.
+#    ports:
+#      - "443:443"
+#    restart: on-failure
+#    volumes:
+#      - wordpress_data:/var/www/html
+#    networks:
+#      - inception
 
 volumes:
   mariadb_data:
@@ -52,11 +54,11 @@ volumes:
       type: none
       device: /home/amahla/data/mariadb
       o: bind
-  wordpress_data:
-    driver_opts:
-      type: none
-      device: /home/amahla/data/wordpress
-      o: bind
+#  wordpress_data:
+#    driver_opts:
+#      type: none
+#      device: /home/amahla/data/wordpress
+#      o: bind
 
 networks:
   inception:
