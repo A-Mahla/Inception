@@ -1,9 +1,6 @@
-#!/bin/sh
-
 if [ ! -f "/var/lib/mysql/.config_mysql_ok" ]
 then
 
-	echo "INITIALISATION"
 	mysql_install_db > /dev/null
 
 	mysqld_safe & sleep 2
@@ -13,7 +10,8 @@ then
 
 	mysqladmin -uroot -p$DB_ROOT_PWD shutdown
 
-	touch /var/lib/mysql/.config_sql_ok
+	touch "/var/lib/mysql/.config_mysql_ok"
+
 fi
 
 exec mysqld
