@@ -4,7 +4,7 @@ RUN		apt-get update \
 		&& apt-get install -y mariadb-server \
 		&& apt-get install -y gettext
 
-COPY	./conf/50-server.cnf /etc/mysql/mariadb.conf.d/.
+COPY	./conf/my.cnf /etc/mysql/mariadb.conf.d/.
 COPY	./tools/config.sh /tmp/config.sh
 COPY	./tools/config.sql /tmp/config.sql
 
