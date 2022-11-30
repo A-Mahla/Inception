@@ -22,6 +22,8 @@ services:
   redis:
     container_name: redis
     build: requirements/bonus/redis/.
+    expose:
+      - "6379"
     restart: on-failure
     networks:
       - inception

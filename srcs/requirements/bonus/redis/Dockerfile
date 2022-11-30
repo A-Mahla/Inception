@@ -10,4 +10,4 @@ RUN		cat < /tmp/cache.conf >> /etc/redis/redis.conf
 
 EXPOSE	6379
 
-ENTRYPOINT	redis-server
+ENTRYPOINT	redis-server --protected-mode no

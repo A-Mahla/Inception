@@ -18,6 +18,8 @@ else
 	wp config set --allow-root WP_REDIS_HOST redis --add
 	wp config set --allow-root  WP_DEBUG true --raw
 	wp plugin install --allow-root redis-cache --activate
+	wp plugin update --all --allow-root
+	wp redis enable --allow-root
 
 fi
 echo "Wordpress is running"
