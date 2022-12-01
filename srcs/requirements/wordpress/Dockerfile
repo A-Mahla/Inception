@@ -2,7 +2,7 @@ FROM	debian:buster
 
 RUN		apt-get update && \
 		apt-get install -y curl && \
-		apt-get install -y php php-fpm php-mysqli mariadb-client sendmail
+		apt-get install -y php php-fpm php-mysqli mariadb-client php-redis
 
 COPY	./tools/wp-install.sh /tmp/.
 COPY	conf/www.conf /etc/php/7.3/fpm/pool.d/.

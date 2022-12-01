@@ -9,7 +9,7 @@ services:
     image:  mariadb
     expose:
       - "3306"
-    restart:  unless-stopped
+    restart: on-failure
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -23,9 +23,11 @@ services:
     container_name: redis
     build: requirements/bonus/redis/.
     image:  redis
+    volumes:
+      - wordpress_data:/var/www/html
     expose:
       - "6379"
-    restart:  unless-stopped
+    restart: on-failure
     networks:
       - inception
 
@@ -43,7 +45,7 @@ services:
     build: requirements/wordpress/.
     expose:
       - "9000"
-    restart:  unless-stopped
+    restart: on-failure
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -57,7 +59,7 @@ services:
     image:  nginx
     ports:
       - "443:443"
-    restart: unless-stopped
+    restart: on-failure
     volumes:
       - wordpress_data:/var/www/html
     networks:

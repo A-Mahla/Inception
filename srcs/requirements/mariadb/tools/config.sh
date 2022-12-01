@@ -1,14 +1,15 @@
 if [ ! -f "/var/lib/mysql/.config_mysql_ok" ]
 then
 
-	mysql_install_db > /dev/null
+	service mysql start
 
-	mysqld_safe & sleep 2
+	sleep 2
 
 	envsubst < /tmp/config.sql > /tmp/config_exp.sql
 	mysql < /tmp/config_exp.sql
 
 	mysqladmin -uroot -p$DB_ROOT_PWD shutdown
+
 
 	touch "/var/lib/mysql/.config_mysql_ok"
 
