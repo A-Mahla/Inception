@@ -10,7 +10,7 @@ COPY	./tools/config.sql /tmp/config.sql
 
 RUN		mkdir -p /var/lib/mysql && \
 		mkdir -p /var/run/mysqld && \
-		chown -R mysql:mysql /var/run/mysqld && \
+		chown -R mysql:root /var/run/mysqld && \
 		chown -R mysql:root /var/lib/mysql
 
 EXPOSE	3306

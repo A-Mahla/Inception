@@ -17,4 +17,4 @@ WORKDIR	/var/www/html
 
 EXPOSE	9000
 
-ENTRYPOINT ["bash", "/tmp/wp-install.sh"]
+ENTRYPOINT ["sh", "/tmp/wp-install.sh"]

@@ -1,6 +1,3 @@
-#!/bin/bash
-
-sleep 10
 if [ -f /var/www/html/wp-config.php ]
 then
 	echo "Wordpress is already downloaded, configured and installed"
